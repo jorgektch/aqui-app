@@ -1,33 +1,62 @@
-const inputText = document.getElementById('input-text');
-const analyzeButton = document.getElementById('analyze-button');
-const resultsTable = document.getElementById('results-table');
+const entradaTexto = document.getElementById('input-text');
+const botonAnalizar = document.getElementById('analyze-button');
+const tablaResultados = document.getElementById('results-table');
+const botonDescargar = document.getElementById('download-button');
 
-analyzeButton.addEventListener('click', analyzeText);
+entradaTexto.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && event.shiftKey) {
+        analizarTexto();
+    }
+});
 
-function analyzeText() {
-    const text = inputText.value.toLowerCase();
-    const words = text.split(' ');
+botonDescargar.addEventListener('click', descargarPDF);
+botonAnalizar.addEventListener('click', analizarTexto);
 
-    const wordFrequencies = {};
-    for (const word of words) {
-        if (wordFrequencies[word]) {
-            wordFrequencies[word]++;
+function analizarTexto() {
+    const texto = entradaTexto.value.toLowerCase();
+    const palabras = texto.split(' ');
+
+    const frecuencia = {};
+    for (const palabra of palabras) {
+        if (frecuencia[palabra]) {
+            frecuencia[palabra]++;
         } else {
-            wordFrequencies[word] = 1;
+            frecuencia[palabra] = 1;
         }
     }
 
-    const sortedFrequencies = Object.entries(wordFrequencies).sort((a, b) => b[1] - a[1]);
+    const frecuenciasOrdenadas = Object.entries(frecuencia).sort((a, b) => b[1] - a[1]);
 
-    const tableBody = resultsTable.querySelector('tbody');
-    tableBody.innerHTML = ''; // Clear existing results
+    const tablaCuerpo = tablaResultados.querySelector('tbody');
+    tablaCuerpo.innerHTML = ''; // Clear existing results
 
-    for (const [word, frequency] of sortedFrequencies) {
-        const row = tableBody.insertRow();
-        const wordCell = row.insertCell();
-        const frequencyCell = row.insertCell();
+    for (const [palabra, frecuencia] of frecuenciasOrdenadas) {
+        const fila = tablaCuerpo.insertRow();
+        const celdaPalabra = fila.insertCell();
+        const celdaFrecuencia = fila.insertCell();
 
-        wordCell.textContent = word;
-        frequencyCell.textContent = frequency;
+        celdaPalabra.textContent = palabra;
+        celdaFrecuencia.textContent = frecuencia;
     }
+}
+
+function descargarPDF() {
+    // Create a new PDF document
+    const doc = new jsPDF('p', 'mm', 'a4');
+
+    // Convert table HTML to PDF table
+    const tableHTML = resultsTable.outerHTML;
+    const pdfTable = doc.table({ html: tableHTML, startY: 10, fontSize: 10 });
+
+    // Set document properties
+    doc.setFontSize(12);
+    doc.autoTable({
+        startY: pdfTable.y + pdfTable.height + 10,
+        html: `
+            <h2 style="text-align: center;">Word Frequency Results</h2>
+        `
+    });
+
+    // Save the PDF
+    doc.save('word_frequency_results.pdf');
 }

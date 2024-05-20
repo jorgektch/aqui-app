@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.editor-container {
+    display: flex;
+    position: relative;
+}
+
+.line-numbers {
+    counter-reset: line;
+    flex: 0 0 30px;
+    text-align: right;
+    margin-right: 5px;
+    user-select: none;
+    background-color: #f0f0f0;
+    padding: 10px 5px;
+    border-right: 1px solid #ccc;
+    color: #888;
+}
+
+.line-numbers div {
+    counter-increment: line;
+}
+
+.line-numbers div::before {
+    content: counter(line);
+    display: block;
+    padding: 0 5px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: monospace;
+    resize: none;
+    border: 1px solid #ccc;
+    border-left: 0;
+    box-sizing: border-box;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+button:last-child {
+    margin-right: 0;
+}

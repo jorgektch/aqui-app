@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQUI Menú reservas</title>
+    <link rel="stylesheet" href="css/styles2.css">
+</head>
+<body>
+    <h1>AQUI Menú reservas</h1>
+    <h2 id="fechaHora"></h2>
+
+    <div class="input-container">
+        <div class="form-group">
+            <label for="locales">Locales</label>
+            <div class="editor-container">
+                <div class="line-numbers" id="line-numbers-locales"></div>
+                <textarea id="locales" placeholder="Ingrese los nombres de los locales, uno por línea">Puerta 7
+Puerta 3</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="platos">Platos</label>
+            <div class="editor-container">
+                <div class="line-numbers" id="line-numbers-platos"></div>
+                <textarea id="platos" placeholder="Ingrese los nombres de los platos, uno por línea"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="pedidos">Pedidos</label>
+        <div class="editor-container">
+            <div class="line-numbers" id="line-numbers-pedidos"></div>
+            <textarea id="pedidos" placeholder="Ingrese los pedidos en el formato 'Nombre del cliente - Nombre del plato (Presa) - Nombre del local', uno por línea"></textarea>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button id="limpiarDatos">Limpiar Datos</button>
+        <button id="procesarDatos">Procesar Datos</button>
+        <button id="imprimirResultados">Imprimir Resultados</button>
+    </div>
+
+    <script src="js/script2.js"></script>
+</body>
+</html>

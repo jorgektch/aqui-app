@@ -38,3 +38,13 @@ body {
     padding: 8px;
     text-align: left;
 }
+
+/* Descargar PDF */
+#download-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
